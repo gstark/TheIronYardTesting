@@ -11,6 +11,12 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:articles)
   end
 
+  test "should only show matching articles when searched" do
+    get :search
+    assert_response :success
+    assert_equal [articles(:two)], assigns(:articles)
+  end
+
   test "should get new" do
     get :new
     assert_response :success
