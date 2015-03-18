@@ -9,6 +9,8 @@ class ArticlesController < ApplicationController
 
   # GET /search
   def search
+    query = params[:query]
+    @articles = Article.where("title like ?", "%#{query}%")
   end
 
   # GET /articles/1

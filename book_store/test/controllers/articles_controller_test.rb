@@ -12,7 +12,7 @@ class ArticlesControllerTest < ActionController::TestCase
   end
 
   test "should only show matching articles when searched" do
-    get :search
+    get :search, query: "tale"
     assert_response :success
     assert_equal [articles(:two)], assigns(:articles)
   end
