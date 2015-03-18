@@ -11,10 +11,18 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_not_nil assigns(:articles)
   end
 
-  test "should only show matching articles when searched" do
+  test "should only fetch matching articles when searched" do
     get :search, query: "tale"
     assert_response :success
     assert_equal [articles(:two)], assigns(:articles)
+  end
+
+  test "should only show matching articles when searched" do
+    get :search, query: "tale"
+    assert_response :success
+
+    # there is only one article that matches, so only one element in the view
+    assert_select 'ul.articles li', 1
   end
 
   test "should get new" do
