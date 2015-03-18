@@ -25,6 +25,16 @@ class ArticlesControllerTest < ActionController::TestCase
     assert_select 'ul.articles li', 1
   end
 
+  test "should only show titles of  matching articles when searched" do
+    get :search, query: "tale"
+    assert_response :success
+
+    # there is only one article that matches, so only one element in the view
+    assert_select 'ul.articles' do
+      assert_select 'li', articles(:two).title
+    end
+  end
+
   test "should get new" do
     get :new
     assert_response :success
