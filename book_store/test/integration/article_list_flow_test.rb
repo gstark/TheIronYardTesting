@@ -4,5 +4,7 @@ class ArticleListFlowTest < ActionDispatch::IntegrationTest
   test "article list flow" do
     get '/articles'
     assert_select 'tbody tr', 2
+
+    assert_select '#search'
   end
 end
